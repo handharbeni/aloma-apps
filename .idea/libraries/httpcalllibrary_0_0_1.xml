@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="httpcalllibrary-0.0.1">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/httpcalllibrary-0.0.1.aar/f8f06adaeba2f7d175a1f4970427d1aa/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/httpcalllibrary-0.0.1.aar/f8f06adaeba2f7d175a1f4970427d1aa/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/httpcalllibrary-0.0.1.aar/acc8a5029020d7a5f7999f2537ef2569/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/httpcalllibrary-0.0.1.aar/acc8a5029020d7a5f7999f2537ef2569/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

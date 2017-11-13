@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="encrypted-preferences-1.3.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/encrypted-preferences-1.3.0.aar/df3eab74c6c806a8af47b3c2609df55a/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/encrypted-preferences-1.3.0.aar/df3eab74c6c806a8af47b3c2609df55a/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/encrypted-preferences-1.3.0.aar/b2622cabc13771ef8de3c2108ea2369b/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/encrypted-preferences-1.3.0.aar/b2622cabc13771ef8de3c2108ea2369b/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

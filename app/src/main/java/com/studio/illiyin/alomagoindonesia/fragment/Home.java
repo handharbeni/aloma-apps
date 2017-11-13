@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.studio.illiyin.alomagoindonesia.MenuTab.Kabar;
 import com.studio.illiyin.alomagoindonesia.MenuTab.TransferPulsa;
 import com.studio.illiyin.alomagoindonesia.R;
 
@@ -29,13 +30,13 @@ public class Home extends Fragment implements android.support.design.widget.TabL
     private ViewPager mViewPager;
     private ActionBar actionBar;
     private TabLayout TabLayout;
-    private String[] tabs = { "Transfer Pulsa", "Berita Burung", "History"};
+    private String[] tabs = { "Transfer Pulsa", "Kabar Burung", "History"};
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_satu, container, false);
-       // getActivity().setTitle(R.string.app_name);
+        // getActivity().setTitle(R.string.app_name);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.title_activity_main_tab);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
         TabLayout = (TabLayout) v.findViewById(R.id.tabs);
@@ -99,7 +100,7 @@ public class Home extends Fragment implements android.support.design.widget.TabL
                     TransferPulsa tab1 = new TransferPulsa();
                     return tab1;
                 case 1:
-                    History tab2 = new History();
+                    Kabar tab2 = new Kabar();
                     return tab2;
                 case 2:
                     History tab3 = new History();
@@ -119,14 +120,13 @@ public class Home extends Fragment implements android.support.design.widget.TabL
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Transfer Pulsa";
+                    return tabs[0];
                 case 1:
-                    return "History";
+                    return tabs[1];
                 case 2:
-                    return "History";
+                    return tabs[2];
                 default:
                     return "Aloma Go";
-//                    break;
             }
         }
     }
