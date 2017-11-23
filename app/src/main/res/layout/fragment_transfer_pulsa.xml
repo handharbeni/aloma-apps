@@ -54,12 +54,14 @@
                 android:background="@drawable/shadow"
                 android:padding="15dp">
                 <TextView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorBg"
                     android:text="@string/nomororigin" />
 
                 <EditText
+                    android:visibility="gone"
                     android:id="@+id/nomor_origin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

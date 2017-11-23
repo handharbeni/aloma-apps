@@ -1,5 +1,7 @@
 package com.studio.illiyin.alomagoindonesia.MenuTab;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -96,9 +98,9 @@ public class TransferPulsa extends Fragment{
             Toast.makeText(getActivity().getApplicationContext(), "SMS sent.",
                     Toast.LENGTH_LONG).show();
         } catch (Exception e) {
-            Toast.makeText(getActivity().getApplicationContext(),
-                    "SMS failed, please try again.",
-                    Toast.LENGTH_LONG).show();
+//            Toast.makeText(getActivity().getApplicationContext(),
+//                    "SMS failed, please try again.",
+//                    Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
@@ -113,61 +115,118 @@ public class TransferPulsa extends Fragment{
         int TotalJasa = 2000;
         int totalTransfer = iNominal+TotalJasa;
 
-        if (!nomor_origin.getText().toString().equalsIgnoreCase("") && !nomor_origin.getText().toString().equalsIgnoreCase("")){
-            String provider = getProvider(nomor_origin.getText().toString());
-            Toast.makeText(getActivity().getApplicationContext(), "MAU KIRIM "+provider, Toast.LENGTH_SHORT).show();
-            switch (provider){
-                case "m3" :
-                    Toast.makeText(getActivity().getApplicationContext(), "SENDING M3", Toast.LENGTH_SHORT).show();
-                    destNumber = "151";
-                    message = "TransferPulsa 085732694628 "+String.valueOf(totalTransfer);
-                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-                    break;
-                case "telkomsel" :
-                    destNumber = "082143434808";
-                    message = "TPULSA "+String.valueOf(totalTransfer);
-                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sendSMSMessage(destNumber, message);
-                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-                    break;
-                case "XL Axiata":
-                    destNumber = "168";
-                    message = "BAGI 083856160083 "+String.valueOf(totalTransfer);
-                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sendSMSMessage(destNumber, message);
-                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-                    break;
-                case "XL 4G LTE" :
-                    destNumber = "168";
-                    message = "BAGI 083856160083 "+String.valueOf(totalTransfer);
-                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sendSMSMessage(destNumber, message);
-                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-                    break;
-                case "three" :
-                    destNumber = "123";
-                    message = "TRANSFER "+totalTransfer+" 089684503715";
-                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sendSMSMessage(destNumber, message);
-                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-                    break;
-                case "ceria" :
-                    destNumber = nomor_tujuan.getText().toString();
-                    message = "TRANSFERPULSA ";
-                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sendSMSMessage(destNumber, message);
-                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-                    break;
-                case "smart" :
-                    destNumber = nomor_tujuan.getText().toString();
-                    message = "TRANSFERPULSA ";
-                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sendSMSMessage(destNumber, message);
-                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-                    break;
+        if (!nomor_tujuan.getText().toString().equalsIgnoreCase("")){
+//            String provider = getProvider(nomor_origin.getText().toString());
+//            Toast.makeText(getActivity().getApplicationContext(), "MAU KIRIM "+provider, Toast.LENGTH_SHORT).show();
+            String provider = encryptedPreferences.getString("PROVIDER", "");
+            if (provider.startsWith("INDOSAT")){
+                destNumber = "151";
+                message = "TransferPulsa 085732694628 "+String.valueOf(totalTransfer);
+//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+                buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
+            }else if(provider.startsWith("XL")){
+                destNumber = "168";
+                message = "BAGI 083817132338"+String.valueOf(totalTransfer);
+//                    message = "BAGI 083856160083 "+String.valueOf(totalTransfer);
+//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+                buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
+            }else if(provider.startsWith("telkomsel")){
+                destNumber = "082143434808";
+                message = "TPULSA "+String.valueOf(totalTransfer);
+//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+                buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
+            }else if(provider.startsWith("three")){
+                destNumber = "123";
+                message = "TRANSFER "+totalTransfer+" 089684503715";
+//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+                buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
+            }else if(provider.startsWith("ceria")){
+                destNumber = nomor_tujuan.getText().toString();
+                message = "TRANSFERPULSA ";
+//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+                buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
+            }else if(provider.startsWith("smart")){
+                destNumber = nomor_tujuan.getText().toString();
+                message = "TRANSFERPULSA ";
+//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+                buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
             }
+//            switch (provider){
+//                case "m3" :
+////                    Toast.makeText(getActivity().getApplicationContext(), "SENDING M3", Toast.LENGTH_SHORT).show();
+//                    destNumber = "151";
+//                    message = "TransferPulsa 085732694628 "+String.valueOf(totalTransfer);
+//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+//                    break;
+//                case "telkomsel" :
+//                    destNumber = "082143434808";
+//                    message = "TPULSA "+String.valueOf(totalTransfer);
+//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+//                    break;
+//                case "XL Axiata":
+//                    destNumber = "168";
+//                    message = "BAGI 083817132338"+String.valueOf(totalTransfer);
+////                    message = "BAGI 083856160083 "+String.valueOf(totalTransfer);
+//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+//                    break;
+//                case "XL 4G LTE" :
+//                    destNumber = "168";
+////                    message = "BAGI 083856160083 "+String.valueOf(totalTransfer);
+//                    message = "BAGI 083817132338"+String.valueOf(totalTransfer);
+//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+//                    break;
+//                case "three" :
+//                    destNumber = "123";
+//                    message = "TRANSFER "+totalTransfer+" 089684503715";
+//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+//                    break;
+//                case "ceria" :
+//                    destNumber = nomor_tujuan.getText().toString();
+//                    message = "TRANSFERPULSA ";
+//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+//                    break;
+//                case "smart" :
+//                    destNumber = nomor_tujuan.getText().toString();
+//                    message = "TRANSFERPULSA ";
+//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+//                    break;
+//            }
         }
+    }
+    private void buildPopUp(final String nomor_tujuan, final String destNumber, final String nominal, final String totalTransfer, final String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity().getWindow().getContext());
+        builder.setTitle("Perhatian");
+        builder.setMessage("Anda Transfer Pulsa ke Server sebesar "+totalTransfer+"\r\n"+
+                "Rp. "+nominal+" Akan Dikirimkan ke Nomor Tujuan "+nomor_tujuan+"\r\n"+
+                "Rp. 2000 Biaya Administrasi");
+        builder.setPositiveButton("YA", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
+                sentKonfirmToServer("", destNumber, nominal, totalTransfer);
+            }
+        });
+        builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
     private void sentKonfirmToServer(String phoneOrigin, String phoneDest, String denominasi, String totalTransfer){
         String endpoint = getString(R.string.endpointUri)+"sentKonfirm/"+phoneOrigin+"/"+phoneDest+"/"+denominasi+"/"+totalTransfer;

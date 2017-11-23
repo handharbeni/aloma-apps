@@ -73,7 +73,7 @@ public class MainServices extends Service {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(MainServices.this, checkProvider(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MainServices.this, checkProvider(), Toast.LENGTH_SHORT).show();
                     encryptedPreferences.edit().putString("PROVIDER",checkProvider()).apply();
                 }
             });
