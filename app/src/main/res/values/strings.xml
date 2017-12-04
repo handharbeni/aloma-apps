@@ -69,7 +69,7 @@
     <string name="slide_4_desc">Update berita di sekitar dengan kongkow di cerita burung sambil menikmati asiknya menikmati berita dalam format komik</string>
 
     <!--<string name="endpointUri">http://192.168.1.10/AlomaGo-Indonesia/restful-api/</string>-->
-    <string name="endpointUri">http://128.199.246.132/alomago/restful-api/v1/run-gammu/</string>
+    <string name="endpointUri">http://128.199.246.132/restful-api/v1/run-gammu/</string>
     <string name="INDOSAT">085732694628</string>
     <string name="XL">083817132338</string>
     <string name="TELKOMSEL">082143434808</string>
