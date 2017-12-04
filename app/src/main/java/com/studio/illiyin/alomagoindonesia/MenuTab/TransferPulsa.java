@@ -116,94 +116,32 @@ public class TransferPulsa extends Fragment{
         int totalTransfer = iNominal+TotalJasa;
 
         if (!nomor_tujuan.getText().toString().equalsIgnoreCase("")){
-//            String provider = getProvider(nomor_origin.getText().toString());
-//            Toast.makeText(getActivity().getApplicationContext(), "MAU KIRIM "+provider, Toast.LENGTH_SHORT).show();
             String provider = encryptedPreferences.getString("PROVIDER", "");
             if (provider.startsWith("INDOSAT")){
                 destNumber = "151";
-                message = "TransferPulsa 085732694628 "+String.valueOf(totalTransfer);
-//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+                message = "TransferPulsa "+getString(R.string.INDOSAT)+" "+String.valueOf(totalTransfer);
                 buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
             }else if(provider.startsWith("XL")){
                 destNumber = "168";
-                message = "BAGI 083817132338"+String.valueOf(totalTransfer);
-//                    message = "BAGI 083856160083 "+String.valueOf(totalTransfer);
-//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+                message = "BAGI "+getString(R.string.XL)+" "+String.valueOf(totalTransfer);
                 buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
             }else if(provider.startsWith("telkomsel")){
-                destNumber = "082143434808";
+                destNumber = getString(R.string.TELKOMSEL);
                 message = "TPULSA "+String.valueOf(totalTransfer);
-//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
                 buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
             }else if(provider.startsWith("three")){
                 destNumber = "123";
-                message = "TRANSFER "+totalTransfer+" 089684503715";
-//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
+                message = "TRANSFER "+totalTransfer+" "+getString(R.string.THREE);
                 buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
             }else if(provider.startsWith("ceria")){
                 destNumber = nomor_tujuan.getText().toString();
                 message = "TRANSFERPULSA ";
-//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
                 buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
             }else if(provider.startsWith("smart")){
                 destNumber = nomor_tujuan.getText().toString();
                 message = "TRANSFERPULSA ";
-//                SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
                 buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
             }
-//            switch (provider){
-//                case "m3" :
-////                    Toast.makeText(getActivity().getApplicationContext(), "SENDING M3", Toast.LENGTH_SHORT).show();
-//                    destNumber = "151";
-//                    message = "TransferPulsa 085732694628 "+String.valueOf(totalTransfer);
-//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-//                    break;
-//                case "telkomsel" :
-//                    destNumber = "082143434808";
-//                    message = "TPULSA "+String.valueOf(totalTransfer);
-//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-//                    break;
-//                case "XL Axiata":
-//                    destNumber = "168";
-//                    message = "BAGI 083817132338"+String.valueOf(totalTransfer);
-////                    message = "BAGI 083856160083 "+String.valueOf(totalTransfer);
-//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-//                    break;
-//                case "XL 4G LTE" :
-//                    destNumber = "168";
-////                    message = "BAGI 083856160083 "+String.valueOf(totalTransfer);
-//                    message = "BAGI 083817132338"+String.valueOf(totalTransfer);
-//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-//                    break;
-//                case "three" :
-//                    destNumber = "123";
-//                    message = "TRANSFER "+totalTransfer+" 089684503715";
-//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-//                    break;
-//                case "ceria" :
-//                    destNumber = nomor_tujuan.getText().toString();
-//                    message = "TRANSFERPULSA ";
-//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-//                    break;
-//                case "smart" :
-//                    destNumber = nomor_tujuan.getText().toString();
-//                    message = "TRANSFERPULSA ";
-//                    SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-//                    sentKonfirmToServer(nomor_origin.getText().toString(), nomor_tujuan.getText().toString(), nominal.getSelectedItem().toString(), String.valueOf(totalTransfer));
-//                    break;
-//            }
         }
     }
     private void buildPopUp(final String nomor_tujuan, final String destNumber, final String nominal, final String totalTransfer, final String message){
