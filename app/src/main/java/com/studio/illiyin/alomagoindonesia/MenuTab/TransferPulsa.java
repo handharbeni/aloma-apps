@@ -167,7 +167,7 @@ public class TransferPulsa extends Fragment{
         dialog.show();
     }
     private void sentKonfirmToServer(String phoneOrigin, String phoneDest, String denominasi, String totalTransfer){
-        String endpoint = getString(R.string.endpointUri)+"sentKonfirm/"+phoneOrigin+"/"+phoneDest+"/"+denominasi+"/"+totalTransfer;
+        String endpoint = getString(R.string.endpointUri)+"run-gammu/sentKonfirm/"+phoneOrigin+"/"+phoneDest+"/"+denominasi+"/"+totalTransfer;
         AndroidCall androidCall = new AndroidCall(getActivity().getApplicationContext());
         try {
             androidCall.get(endpoint);
