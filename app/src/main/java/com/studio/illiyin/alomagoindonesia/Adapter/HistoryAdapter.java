@@ -65,8 +65,6 @@ public class HistoryAdapter extends ArrayAdapter<HistoryModel> {
 
         Glide.with(mContexte)
                 .load(dataModel.getPhoto())
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .skipMemoryCache(false)
                 .into(viewHolder.icon);
 
         viewHolder.txtNumber.setText(dataModel.getNumber());

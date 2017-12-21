@@ -62,8 +62,6 @@ public class KabarAdapter extends ArrayAdapter<KabarModel> {
         viewHolder.itemBerita.setVisibility(View.VISIBLE);
         Glide.with(mContext)
                 .load(dataModel.getPhoto())
-                .diskCacheStrategy(DiskCacheStrategy.RESULT)
-                .skipMemoryCache(false)
                 .into(viewHolder.photo_thumbnail);
 
         viewHolder.itemJudul.setText(dataModel.getJudul());
