@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:text="Saya Setuju"/>
 
-            <android.support.v7.widget.AppCompatButton
+            <Button
                 android:id="@+id/send"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

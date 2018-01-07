@@ -45,10 +45,10 @@ public class KabarAdapter extends ArrayAdapter<KabarModel> {
             viewHolder = new KabarAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(mContext);
             convertView = inflater.inflate(R.layout.item_berita, parent, false);
-            viewHolder.itemBerita= (LinearLayout) convertView.findViewById(R.id.itemBerita);
-            viewHolder.photo_thumbnail = (ImageView) convertView.findViewById(R.id.imagenews);
-            viewHolder.itemJudul= (TextView) convertView.findViewById(R.id.judul_berita);
-            viewHolder.txtTanggal = (TextView) convertView.findViewById(R.id.tgl_berita);
+            viewHolder.itemBerita= convertView.findViewById(R.id.itemBerita);
+            viewHolder.photo_thumbnail = convertView.findViewById(R.id.imagenews);
+            viewHolder.itemJudul= convertView.findViewById(R.id.judul_berita);
+            viewHolder.txtTanggal = convertView.findViewById(R.id.tgl_berita);
 
             result=convertView;
             convertView.setTag(viewHolder);

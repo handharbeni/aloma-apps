@@ -4,14 +4,11 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
-
-import com.studio.illiyin.alomagoindonesia.utils.SMSUtils;
 
 import static android.content.ContentValues.TAG;
 
@@ -44,7 +41,7 @@ public class SmsListener extends BroadcastReceiver {
                         switch (msg_from){
                             case "151" :
                                 cs = "151";
-                                String[] submessage = msgs[i].getMessageBody().toString().split(" adalah token anda. ");
+                                String[] submessage = msgs[i].getMessageBody().toLowerCase().split(" adalah token anda. ");
                                 message = "Ok "+submessage[0];
 //                                SMSUtils.sendSMS(context, cs, message);
                                 sentSMS(context, cs, message);

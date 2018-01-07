@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -51,12 +52,13 @@ public class TransferPulsa extends Fragment{
         int color = Color.parseColor("#BDBDBD"); //The color u want
 //        lineColorCode.setColorFilter(color);
 
-        ImageView imageView = (ImageView) myView.findViewById(R.id.icon_transfer);
+        ImageView imageView = myView.findViewById(R.id.icon_transfer);
         imageView.setColorFilter(color);
-        AppCompatButton send = (AppCompatButton) myView.findViewById(R.id.send);
+        Button send = myView.findViewById(R.id.send);
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(getActivity().getApplicationContext(), "Clicicked", Toast.LENGTH_SHORT).show();
                 doTransfer();
             }
         });
@@ -106,9 +108,9 @@ public class TransferPulsa extends Fragment{
     }
     private void doTransfer(){
         String destNumber = "", message = "";
-        EditText nomor_origin = (EditText) myView.findViewById(R.id.nomor_origin);
-        EditText nomor_tujuan = (EditText) myView.findViewById(R.id.nomor_tujuan);
-        Spinner nominal = (Spinner) myView.findViewById(R.id.denominasi);
+        EditText nomor_origin = myView.findViewById(R.id.nomor_origin);
+        EditText nomor_tujuan = myView.findViewById(R.id.nomor_tujuan);
+        Spinner nominal = myView.findViewById(R.id.denominasi);
 
 
         int iNominal = Integer.valueOf(nominal.getSelectedItem().toString());
@@ -116,7 +118,7 @@ public class TransferPulsa extends Fragment{
         int totalTransfer = iNominal+TotalJasa;
 
         if (!nomor_tujuan.getText().toString().equalsIgnoreCase("")){
-            String provider = encryptedPreferences.getString("PROVIDER", "");
+            String provider = encryptedPreferences.getString("PROVIDER", "").toUpperCase();
             if (provider.startsWith("INDOSAT")){
                 destNumber = "151";
                 message = "TransferPulsa "+getString(R.string.INDOSAT)+" "+String.valueOf(totalTransfer);
