@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.telephony.TelephonyManager;
-import android.widget.Toast;
 
 import com.pddstudio.preferences.encrypted.EncryptedPreferences;
 
@@ -64,8 +63,10 @@ public class MainServices extends Service {
     }
     private String checkProvider(){
         TelephonyManager telephonyManager = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE));
-        String simOperatorName = telephonyManager.getSimOperatorName();
-        return simOperatorName;
+        assert telephonyManager != null;
+        String networkName = telephonyManager.getNetworkOperatorName();
+        String operatorName = telephonyManager.getSimOperatorName();
+        return telephonyManager.getNetworkOperatorName();
     }
     class TimeDisplayTimerTask extends TimerTask {
         @Override

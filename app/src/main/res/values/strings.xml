@@ -68,10 +68,11 @@
     <string name="slide_4_title">Cerita Burung</string>
     <string name="slide_4_desc">Update berita di sekitar dengan kongkow di cerita burung sambil menikmati asiknya menikmati berita dalam format komik</string>
 
-    <string name="endpointUri">http://192.168.3.21/AlomaGo-Indonesia/restful-api/</string>
-    <!--<string name="endpointUri">http://128.199.246.132/restful-api/v1/run-gammu/</string>-->
-    <string name="INDOSAT">085850461836</string>
-    <string name="XL">087759865740</string>
-    <string name="TELKOMSEL">082143434808</string>
+    <!--<string name="endpointUri">http://192.168.3.21/AlomaGo-Indonesia/restful-api/</string>-->
+    <string name="endpointUri">http://128.199.246.132/restful-api/v1/run-gammu/</string>
+    <string name="INDOSAT">081556617741</string>
+    <string name="XL">081939292602</string>
+    <string name="TELKOMSEL">082139433473</string>
+    <!--<string name="TELKOMSEL">081333662055</string>-->
     <string name="THREE">089684503715</string>
 </resources>

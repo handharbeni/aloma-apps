@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: illiyin.mhandharbeni.httpcall:httpcalllibrary-0.0.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/httpcalllibrary-0.0.2.aar/e55b3fa5f27727f2f9c6560a43035d20/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/httpcalllibrary-0.0.2.aar/e55b3fa5f27727f2f9c6560a43035d20/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/illiyin.mhandharbeni.httpcall/httpcalllibrary/0.0.2/eafe5d15371ec9d998b41316593fdaeaa05c65d/httpcalllibrary-0.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

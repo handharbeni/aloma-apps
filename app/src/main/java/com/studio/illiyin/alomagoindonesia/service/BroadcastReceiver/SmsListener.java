@@ -38,28 +38,34 @@ public class SmsListener extends BroadcastReceiver {
                         Log.d(TAG, "onReceive: SMS Listener "+msg_from+" "+msgBody);
                         String cs = "";
                         String message = "";
+                        String[] submessage = null;
                         switch (msg_from){
                             case "151" :
                                 cs = "151";
-                                String[] submessage = msgs[i].getMessageBody().toLowerCase().split(" adalah token anda. ");
-                                message = "Ok "+submessage[0];
-//                                SMSUtils.sendSMS(context, cs, message);
-                                sentSMS(context, cs, message);
-                                Log.d(TAG, "onReceive: SMS Listener "+msg_from+" "+message);
+                                submessage = msgs[i].getMessageBody().toLowerCase().split(" adalah token anda. ");
+                                if (submessage != null) {
+                                    message = "Ok " + submessage[0];
+                                    sentSMS(context, cs, message);
+                                    Log.d(TAG, "onReceive: SMS Listener " + msg_from + " " + message);
+                                }
                                 break;
                             case "858" :
-                                cs = "858";
-                                message = "YA";
-//                                SMSUtils.sendSMS(context, cs, message);
-                                sentSMS(context, cs, message);
-                                Log.d(TAG, "onReceive: SMS Listener "+msg_from+" "+message);
+                                submessage = msgs[i].getMessageBody().toLowerCase().split("anda akan mengirimkan pulsa rp ");
+                                if (!msgs[i].getMessageBody().toLowerCase().equalsIgnoreCase("Maaf, Anda belum melakukan request transfer pulsa. Untuk transfer pulsa ketik TPulsa<spasi>nominal kirim ke nomor tujuan. Biaya Rp1rb.\"")) {
+                                    cs = "858";
+                                    message = "YA";
+                                    sentSMS(context, cs, message);
+                                    Log.d(TAG, "onReceive: SMS Listener " + msg_from + " " + message);
+                                }
                                 break;
                             case "168" :
-                                cs = "168";
-                                message = "Y";
-//                                SMSUtils.sendSMS(context, cs, message);
-                                sentSMS(context, cs, message);
-                                Log.d(TAG, "onReceive: SMS Listener "+msg_from+" "+message);
+                                submessage = msgs[i].getMessageBody().toLowerCase().split("anda akan bagi pulsa ke no xl");
+                                if (submessage != null) {
+                                    cs = "168";
+                                    message = "Y";
+                                    sentSMS(context, cs, message);
+                                    Log.d(TAG, "onReceive: SMS Listener " + msg_from + " " + message);
+                                }
                                 break;
                         }
                     }

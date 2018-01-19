@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.AppCompatButton;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,9 +47,7 @@ public class TransferPulsa extends Fragment{
         myView = inflater.inflate(R.layout.fragment_transfer_pulsa,container,false);
         dropdownList(myView);
 
-//        ImageView lineColorCode = (ImageView)myView.findViewById(R.id.icon_transfer_bak);
         int color = Color.parseColor("#BDBDBD"); //The color u want
-//        lineColorCode.setColorFilter(color);
 
         ImageView imageView = myView.findViewById(R.id.icon_transfer);
         imageView.setColorFilter(color);
@@ -58,7 +55,6 @@ public class TransferPulsa extends Fragment{
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity().getApplicationContext(), "Clicicked", Toast.LENGTH_SHORT).show();
                 doTransfer();
             }
         });
@@ -66,11 +62,11 @@ public class TransferPulsa extends Fragment{
     }
 
     public void dropdownList(View view){
-        Spinner dynamicSpinner = (Spinner) view.findViewById(R.id.denominasi);
+        Spinner dynamicSpinner = view.findViewById(R.id.denominasi);
 
-        String[] items = new String[] { "5000", "10000", "15000" };
+        String[] items = new String[]{"5000", "10000", "25000"};
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, items);
 
         dynamicSpinner.setAdapter(adapter);
 
@@ -100,9 +96,6 @@ public class TransferPulsa extends Fragment{
             Toast.makeText(getActivity().getApplicationContext(), "SMS sent.",
                     Toast.LENGTH_LONG).show();
         } catch (Exception e) {
-//            Toast.makeText(getActivity().getApplicationContext(),
-//                    "SMS failed, please try again.",
-//                    Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
@@ -127,7 +120,7 @@ public class TransferPulsa extends Fragment{
                 destNumber = "168";
                 message = "BAGI "+getString(R.string.XL)+" "+String.valueOf(totalTransfer);
                 buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
-            }else if(provider.startsWith("telkomsel")){
+            } else if (provider.startsWith("TELKOMSEL")) {
                 destNumber = getString(R.string.TELKOMSEL);
                 message = "TPULSA "+String.valueOf(totalTransfer);
                 buildPopUp(nomor_tujuan.getText().toString(), destNumber, String.valueOf(iNominal), String.valueOf(totalTransfer), message);
@@ -156,7 +149,7 @@ public class TransferPulsa extends Fragment{
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 SMSUtils.sendSMS(getActivity().getApplicationContext(), destNumber, message);
-                sentKonfirmToServer("", destNumber, nominal, totalTransfer);
+                sentKonfirmToServer(nomor_tujuan, destNumber, nominal, totalTransfer);
             }
         });
         builder.setNegativeButton("Batal", new DialogInterface.OnClickListener() {
@@ -169,10 +162,11 @@ public class TransferPulsa extends Fragment{
         dialog.show();
     }
     private void sentKonfirmToServer(String phoneOrigin, String phoneDest, String denominasi, String totalTransfer){
-        String endpoint = getString(R.string.endpointUri)+"run-gammu/sentKonfirm/"+phoneOrigin+"/"+phoneDest+"/"+denominasi+"/"+totalTransfer;
+        String endpoint = getString(R.string.endpointUri) + "sentKonfirm/" + phoneDest + "/" + "0" + phoneOrigin + "/" + denominasi + "/" + totalTransfer;
         AndroidCall androidCall = new AndroidCall(getActivity().getApplicationContext());
         try {
-            androidCall.get(endpoint);
+            String result = androidCall.get(endpoint);
+            Log.d(TAG, "sentKonfirmToServer: " + result);
         } catch (IOException e) {
             e.printStackTrace();
         }
