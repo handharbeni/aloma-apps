@@ -10,8 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.studio.illiyin.alomagoindonesia.Adapter.model.HistoryModel;
+import com.studio.illiyin.alomagoindonesia.Models.HistoryModel;
 import com.studio.illiyin.alomagoindonesia.R;
 
 import java.util.ArrayList;
@@ -24,13 +23,14 @@ public class HistoryAdapter extends ArrayAdapter<HistoryModel> {
     private int lastPosition = -1;
     private ArrayList<HistoryModel> dataSet;
     Context mContexte;
+
     private static class ViewHolder {
         ImageView icon;
         TextView txtNumber, txtDate, txtTime, txtPrice;
         LinearLayout itemHistory;
-
     }
     HistoryAdapter.ViewHolder viewHolder;
+
     public HistoryAdapter(ArrayList<HistoryModel> data, Context context) {
         super(context, R.layout.item_history, data);
         this.dataSet = data;

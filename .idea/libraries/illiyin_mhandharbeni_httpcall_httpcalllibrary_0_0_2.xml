@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="illiyin.mhandharbeni.httpcall:httpcalllibrary-0.0.2">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/httpcalllibrary-0.0.2.aar/e55b3fa5f27727f2f9c6560a43035d20/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/httpcalllibrary-0.0.2.aar/e55b3fa5f27727f2f9c6560a43035d20/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/httpcalllibrary-0.0.2.aar/b670d99ebd64b1d5611615599e85bc7e/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/httpcalllibrary-0.0.2.aar/b670d99ebd64b1d5611615599e85bc7e/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -6,22 +6,11 @@
     android:weightSum="1">
 
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:text="@string/title_about"
-        android:textSize="20dp"
-        android:textStyle="bold"
-         />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:text="@string/desc_about"
-        android:lineSpacingExtra="5dp"
-        />
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

@@ -10,7 +10,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import com.studio.illiyin.alomagoindonesia.Adapter.KabarAdapter;
-import com.studio.illiyin.alomagoindonesia.Adapter.model.KabarModel;
+import com.studio.illiyin.alomagoindonesia.Models.KabarModel;
 import com.studio.illiyin.alomagoindonesia.R;
 
 public class Kabar extends Fragment {

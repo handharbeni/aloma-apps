@@ -1,7 +1,6 @@
 package com.studio.illiyin.alomagoindonesia.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.studio.illiyin.alomagoindonesia.Adapter.HistoryAdapter;
-import com.studio.illiyin.alomagoindonesia.Adapter.model.HistoryModel;
+import com.studio.illiyin.alomagoindonesia.Models.HistoryModel;
 import com.studio.illiyin.alomagoindonesia.R;
 
 import java.util.ArrayList;
@@ -51,7 +50,6 @@ public class History extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 HistoryModel dataModel= dataModels.get(position);
-
             }
         });
 

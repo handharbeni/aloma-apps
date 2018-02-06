@@ -1,4 +1,4 @@
-package com.studio.illiyin.alomagoindonesia.Adapter.model;
+package com.studio.illiyin.alomagoindonesia.Models;
 
 /**
  * Created by Mindha on 21/06/2017.
