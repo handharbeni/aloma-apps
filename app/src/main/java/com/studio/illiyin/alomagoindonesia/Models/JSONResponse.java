@@ -16,7 +16,6 @@ public class JSONResponse {
     public boolean getIsOK(){
         return isOK;
     }
-
 }
 
 
