@@ -8,6 +8,7 @@ import com.studio.illiyin.alomagoindonesia.Models.KabarModel;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -38,11 +39,14 @@ public interface RrequestInterface {
     @GET("transferpulsa")
     Call<JSONResponseHistory> getListDataHistory();
 
+    @FormUrlEncoded
     @POST("user/daftarBody")
-    Call<ResponseBody> registerRequest(@Query("username") String username,
-                                       @Query("password") String password,
-                                       @Query("email") String email);
+    Call<ResponseBody> registerRequest(@Field("username") String username,
+                                       @Field("password") String password,
+                                       @Field("email") String email);
+
+    @FormUrlEncoded
     @POST("user/masukBody")
-    Call<ResponseBody> loginRequest(@Query("username") String username,
-                                    @Query("password") String password);
+    Call<ResponseBody> loginRequest(@Field("username") String username,
+                                    @Field("password") String password);
 }
