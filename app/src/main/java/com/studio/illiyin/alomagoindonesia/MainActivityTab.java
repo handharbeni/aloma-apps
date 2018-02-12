@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.pddstudio.preferences.encrypted.EncryptedPreferences;
 import com.studio.illiyin.alomagoindonesia.fragment.About;
+import com.studio.illiyin.alomagoindonesia.fragment.DetailKabar;
 import com.studio.illiyin.alomagoindonesia.fragment.Disclaimer;
 import com.studio.illiyin.alomagoindonesia.fragment.Feedback;
 import com.studio.illiyin.alomagoindonesia.fragment.Registration;
@@ -32,7 +33,7 @@ import com.studio.illiyin.alomagoindonesia.fragment.Rate;
 import com.studio.illiyin.alomagoindonesia.fragment.TellFriend;
 import com.studio.illiyin.alomagoindonesia.service.MainServices;
 
-public class MainActivityTab extends AppCompatActivity {
+public class MainActivityTab extends AppCompatActivity{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -160,7 +161,6 @@ public class MainActivityTab extends AppCompatActivity {
             changeFragment(tab1);
             return true;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

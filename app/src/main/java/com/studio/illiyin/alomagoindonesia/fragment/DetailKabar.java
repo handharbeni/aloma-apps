@@ -1,51 +1,48 @@
-package com.studio.illiyin.alomagoindonesia.MenuTab;
+package com.studio.illiyin.alomagoindonesia.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-
+import com.studio.illiyin.alomagoindonesia.Adapter.DetailKabarAdapter;
 import com.studio.illiyin.alomagoindonesia.Adapter.KabarAdapter;
 import com.studio.illiyin.alomagoindonesia.Generator.ServiceGenerator;
-import com.studio.illiyin.alomagoindonesia.Models.AppInfo;
+import com.studio.illiyin.alomagoindonesia.MenuTab.Kabar;
 import com.studio.illiyin.alomagoindonesia.Models.JSONResponse2;
 import com.studio.illiyin.alomagoindonesia.Models.KabarModel;
 import com.studio.illiyin.alomagoindonesia.R;
-import com.studio.illiyin.alomagoindonesia.fragment.DetailKabar;
 import com.studio.illiyin.alomagoindonesia.service.RrequestInterface;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.content.ContentValues.TAG;
+/**
+ * Created by fairuz on 2/8/2018.
+ */
 
-public class Kabar extends Fragment {
+public class DetailKabar extends Fragment {
     View view;
     private RecyclerView recyclerView;
     private ArrayList<KabarModel> data;
-    private KabarAdapter adapter;
+    private DetailKabarAdapter adapter;
     RrequestInterface request;
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_berita_burung, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_detail_kabar_burung,container,false);
         initViews();
-        return  view;
+        return view;
     }
 
     private void initViews() {
@@ -64,14 +61,13 @@ public class Kabar extends Fragment {
             public void onResponse(Call<JSONResponse2<KabarModel>> call, Response<JSONResponse2<KabarModel>> response) {
                 JSONResponse2<KabarModel> jsonResponse2 = response.body();
                 data = new ArrayList<>(Arrays.asList(jsonResponse2.getListKabar()));
-                adapter = new KabarAdapter(data, getActivity().getApplicationContext());
+                adapter = new DetailKabarAdapter(data, getActivity().getApplicationContext());
                 recyclerView.setAdapter(adapter);
-
             }
 
             @Override
             public void onFailure(Call<JSONResponse2<KabarModel>> call, Throwable t) {
-                Log.d(TAG, "Error"+t.getMessage());
+                Log.d("Error", t.getMessage());
             }
         });
     }

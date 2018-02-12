@@ -82,10 +82,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-
+                android:id="@+id/btn_registrasi"
                 android:textColor="@color/colorForm"
                 android:background="@color/colorPrimary"
-                android:text="SIGN IN"/>
+                android:text="Register"/>
         </LinearLayout>
 
     </ScrollView>

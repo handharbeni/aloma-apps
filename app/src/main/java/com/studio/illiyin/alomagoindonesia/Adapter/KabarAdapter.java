@@ -1,8 +1,16 @@
 package com.studio.illiyin.alomagoindonesia.Adapter;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentContainer;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +22,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
+import com.studio.illiyin.alomagoindonesia.MenuTab.Kabar;
 import com.studio.illiyin.alomagoindonesia.Models.AppInfo;
 import com.studio.illiyin.alomagoindonesia.Models.JSONResponse2;
 import com.studio.illiyin.alomagoindonesia.Models.KabarModel;
 import com.studio.illiyin.alomagoindonesia.R;
+import com.studio.illiyin.alomagoindonesia.fragment.DetailKabar;
 
 import java.util.ArrayList;
 
@@ -30,6 +40,7 @@ public class KabarAdapter extends RecyclerView.Adapter<KabarAdapter.ViewHolder> 
     private ArrayList<KabarModel> gambar;
     Context mContext;
     View view;
+
 
     public KabarAdapter (ArrayList<KabarModel> data, Context applicationContext){
         this.data = data;
@@ -53,8 +64,6 @@ public class KabarAdapter extends RecyclerView.Adapter<KabarAdapter.ViewHolder> 
         }else {
             Picasso.with(mContext.getApplicationContext()).load(R.drawable.burung).into(holder.imgKabar);
         }
-
-
     }
 
     @Override
@@ -75,8 +84,19 @@ public class KabarAdapter extends RecyclerView.Adapter<KabarAdapter.ViewHolder> 
 
         @Override
         public void onClick(View view) {
+            String id = data.get(getAdapterPosition()).getId();
 
+            Bundle bundle = new Bundle();
+            bundle.putString("id", id);
+
+            android.support.v4.app.Fragment fragment = new DetailKabar();
+            fragment.setArguments(bundle);
+
+            fragment.getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.containers, fragment)
+                    .commitNow();
+            Toast.makeText(mContext, "Test"+data.get(getAdapterPosition()).getId(),Toast.LENGTH_SHORT).show();
         }
     }
-
 }

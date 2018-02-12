@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.studio.illiyin.alomagoindonesia.R;
 
@@ -15,10 +16,17 @@ import com.studio.illiyin.alomagoindonesia.R;
 
 public class SignIn extends Fragment {
     View myView;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.fragment_sign_in,container,false);
         return myView;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     }
 }
