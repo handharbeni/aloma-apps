@@ -7,12 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.studio.illiyin.alomagoindonesia.DetailKabarActivity;
 import com.studio.illiyin.alomagoindonesia.MenuTab.Kabar;
+import com.studio.illiyin.alomagoindonesia.Models.DetailKabarModel;
 import com.studio.illiyin.alomagoindonesia.Models.KabarModel;
 import com.studio.illiyin.alomagoindonesia.R;
 import com.studio.illiyin.alomagoindonesia.fragment.DetailKabar;
@@ -26,39 +29,32 @@ import java.util.ArrayList;
  */
 
 public class DetailKabarAdapter extends RecyclerView.Adapter<DetailKabarAdapter.ViewHolder> {
-    private ArrayList<KabarModel> data;
-    private ArrayList<KabarModel> gambar;
+    private ArrayList<DetailKabarModel> data;
     Context mContext;
-    DetailKabar fragment = new DetailKabar();
+//
+//    public DetailKabarAdapter (ArrayList<DetailKabarModel> data, Context getapplicationcontext){
+//        this.data = data;
+//        this.mContext = getapplicationcontext;
+//    }
 
-    public DetailKabarAdapter(ArrayList<KabarModel> data, Context getApplicationContent){
-        this.data = data;
-        this.mContext = getApplicationContent;
+    public DetailKabarAdapter(ArrayList<DetailKabarModel> dataModels, Context applicationContext) {
+        this.data = dataModels;
+        this.mContext = applicationContext;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_detail_berita, parent, false);
-
+    public DetailKabarAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_detail_kabar, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Bundle bundle = fragment.getArguments();
-        if(bundle != null){
-            String i = bundle.getString("id", "");
-
-            holder.txtJudul.setText(i);
-            gambar = (ArrayList<KabarModel>) data.get(position).getImages();
-            if(gambar!=null){
-                Picasso.with(mContext.getApplicationContext()).load((Uri) data.get(position).getImages()).into(holder.imgIconContent);
-            }else{
-                Picasso.with(mContext.getApplicationContext()).load(R.drawable.img_one_cak).into(holder.imgIconContent);
-            }
-
+    public void onBindViewHolder(DetailKabarAdapter.ViewHolder holder, int position) {
+        if(data.get(position).getImages() == null){
+            Picasso.with(mContext.getApplicationContext()).load(R.drawable.burung).into(holder.img);
+        }else {
+            Picasso.with(mContext.getApplicationContext()).load((Uri) data.get(position).getImages()).into(holder.img);
         }
-
     }
 
     @Override
@@ -67,13 +63,59 @@ public class DetailKabarAdapter extends RecyclerView.Adapter<DetailKabarAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView imgIconContent;
-        private TextView txtJudul;
+        private ImageView img;
         public ViewHolder(View itemView) {
             super(itemView);
-
-            txtJudul=itemView.findViewById(R.id.judul_berita);
-            imgIconContent = itemView.findViewById(R.id.img_contentNews);
+            img = itemView.findViewById(R.id.imageKabarBurung);
         }
     }
+//    private ArrayList<KabarModel> data;
+//    private ArrayList<KabarModel> gambar;
+//    Context mContext;
+//    DetailKabar fragment = new DetailKabar();
+//
+//    public DetailKabarAdapter(ArrayList<KabarModel> data, Context getApplicationContent){
+//        this.data = data;
+//        this.mContext = getApplicationContent;
+//    }
+//
+//    @Override
+//    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_detail_berita, parent, false);
+//        return new ViewHolder(view);
+//    }
+//
+//    @Override
+//    public void onBindViewHolder(ViewHolder holder, int position) {
+//        Bundle bundle = fragment.getArguments();
+//        if(bundle != null){
+//            String i = bundle.getString("id", "");
+//
+//            holder.txtJudul.setText(i);
+//            gambar = (ArrayList<KabarModel>) data.get(position).getImages();
+//            if(gambar!=null){
+//                Picasso.with(mContext.getApplicationContext()).load((Uri) data.get(position).getImages()).into(holder.imgIconContent);
+//            }else{
+//                Picasso.with(mContext.getApplicationContext()).load(R.drawable.img_one_cak).into(holder.imgIconContent);
+//            }
+//
+//        }
+//
+//    }
+//
+//    @Override
+//    public int getItemCount() {
+//        return data.size();
+//    }
+//
+//    public class ViewHolder extends RecyclerView.ViewHolder {
+//        private ImageView imgIconContent;
+//        private TextView txtJudul;
+//        public ViewHolder(View itemView) {
+//            super(itemView);
+//
+//            txtJudul=itemView.findViewById(R.id.judul_berita);
+//            imgIconContent = itemView.findViewById(R.id.img_contentNews);
+//        }
+//    }
 }

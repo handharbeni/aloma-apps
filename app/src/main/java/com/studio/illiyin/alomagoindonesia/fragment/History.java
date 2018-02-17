@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.studio.illiyin.alomagoindonesia.Adapter.HistoryAdapter;
 import com.studio.illiyin.alomagoindonesia.Generator.ServiceGenerator;
+import com.studio.illiyin.alomagoindonesia.MenuTab.SignIn;
 import com.studio.illiyin.alomagoindonesia.Models.HistoryModel;
 import com.studio.illiyin.alomagoindonesia.Models.JSONResponse;
 import com.studio.illiyin.alomagoindonesia.Models.JSONResponseHistory;
@@ -43,7 +44,11 @@ public class History extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_history, container, false);
         getActivity().setTitle("History");
-        initViews();
+        if(SignIn.KEY_ID!=null){
+            initViews();
+        }else {
+            Toast.makeText(getContext(), "Silahkan Login Terlebih Dahulu", Toast.LENGTH_SHORT).show();
+        }
         return view;
     }
 

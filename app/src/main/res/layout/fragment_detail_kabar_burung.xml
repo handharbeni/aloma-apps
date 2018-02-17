@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
-        android:scrollbars="vertical"
+    <TextView
+        android:id="@+id/judul"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textAlignment="center"/>
+    <FrameLayout
+        android:id="@+id/detailKabarContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/judul">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+    </FrameLayout>
 
-</android.support.constraint.ConstraintLayout>
+
+</RelativeLayout>

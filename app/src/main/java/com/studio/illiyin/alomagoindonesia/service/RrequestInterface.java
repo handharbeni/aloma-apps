@@ -1,7 +1,9 @@
 package com.studio.illiyin.alomagoindonesia.service;
 
+import com.studio.illiyin.alomagoindonesia.Models.DetailKabarModel;
 import com.studio.illiyin.alomagoindonesia.Models.JSONResponse;
 import com.studio.illiyin.alomagoindonesia.Models.JSONResponse2;
+import com.studio.illiyin.alomagoindonesia.Models.JSONResponseDetailKabar;
 import com.studio.illiyin.alomagoindonesia.Models.JSONResponseHistory;
 import com.studio.illiyin.alomagoindonesia.Models.KabarModel;
 
@@ -11,7 +13,6 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 /**
  * Created by fairuz on 2/3/2018.
@@ -33,20 +34,23 @@ public interface RrequestInterface {
     @GET("kabarburung")
     Call<JSONResponse2<KabarModel>> getListKabarBurung();
 
-    @GET("kabarburung/")
-    Call<JSONResponse2<KabarModel>> getContentKabar();
+    @GET("kabarburung")
+//    Call<JSONResponseDetailKabar<DetailKabarModel>> getContentKabar(@Field("id") String id);
+
+
+    Call<JSONResponseDetailKabar<DetailKabarModel>> getContentKabar();
 
     @GET("transferpulsa")
     Call<JSONResponseHistory> getListDataHistory();
 
     @FormUrlEncoded
-    @POST("user/daftarBody")
+    @POST("user/daftar")
     Call<ResponseBody> registerRequest(@Field("username") String username,
                                        @Field("password") String password,
                                        @Field("email") String email);
 
     @FormUrlEncoded
-    @POST("user/masukBody")
+    @POST("user/masuk")
     Call<ResponseBody> loginRequest(@Field("username") String username,
                                     @Field("password") String password);
 }

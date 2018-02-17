@@ -113,7 +113,7 @@ public class MainActivityTab extends AppCompatActivity{
         }
 
         if (id == R.id.sign_in){
-            Fragment tab1 = new Registration();
+            Fragment tab1 = new Registration("Test");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             setActionBarTitle("Signin/Registration");
             changeFragment(tab1);

@@ -24,4 +24,5 @@ public class JSONResponse2<K> {
     public int getJudul() {
         return judul;
     }
+
 }

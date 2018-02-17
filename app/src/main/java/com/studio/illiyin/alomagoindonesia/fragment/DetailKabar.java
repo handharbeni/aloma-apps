@@ -31,44 +31,44 @@ import retrofit2.Response;
  */
 
 public class DetailKabar extends Fragment {
-    View view;
-    private RecyclerView recyclerView;
-    private ArrayList<KabarModel> data;
-    private DetailKabarAdapter adapter;
-    RrequestInterface request;
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_detail_kabar_burung,container,false);
-        initViews();
-        return view;
-    }
-
-    private void initViews() {
-        recyclerView = view.findViewById(R.id.rv);
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        loadData();
-    }
-
-    private void loadData() {
-        request = ServiceGenerator.createService(RrequestInterface.class);
-        Call<JSONResponse2<KabarModel>> call = request.getListKabarBurung();
-        call.enqueue(new Callback<JSONResponse2<KabarModel>>() {
-            @Override
-            public void onResponse(Call<JSONResponse2<KabarModel>> call, Response<JSONResponse2<KabarModel>> response) {
-                JSONResponse2<KabarModel> jsonResponse2 = response.body();
-                data = new ArrayList<>(Arrays.asList(jsonResponse2.getListKabar()));
-                adapter = new DetailKabarAdapter(data, getActivity().getApplicationContext());
-                recyclerView.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Call<JSONResponse2<KabarModel>> call, Throwable t) {
-                Log.d("Error", t.getMessage());
-            }
-        });
-    }
+//    View view;
+//    private RecyclerView recyclerView;
+//    private ArrayList<KabarModel> data;
+//    private DetailKabarAdapter adapter;
+//    RrequestInterface request;
+//
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+//        view = inflater.inflate(R.layout.fragment_detail_kabar_burung,container,false);
+//        initViews();
+//        return view;
+//    }
+//
+//    private void initViews() {
+//        recyclerView = view.findViewById(R.id.rv);
+//        recyclerView.setHasFixedSize(true);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+//        recyclerView.setLayoutManager(layoutManager);
+//        loadData();
+//    }
+//
+//    private void loadData() {
+//        request = ServiceGenerator.createService(RrequestInterface.class);
+//        Call<JSONResponse2<KabarModel>> call = request.getListKabarBurung();
+//        call.enqueue(new Callback<JSONResponse2<KabarModel>>() {
+//            @Override
+//            public void onResponse(Call<JSONResponse2<KabarModel>> call, Response<JSONResponse2<KabarModel>> response) {
+//                JSONResponse2<KabarModel> jsonResponse2 = response.body();
+//                data = new ArrayList<>(Arrays.asList(jsonResponse2.getListKabar()));
+//                adapter = new DetailKabarAdapter(data, getActivity().getApplicationContext());
+//                recyclerView.setAdapter(adapter);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<JSONResponse2<KabarModel>> call, Throwable t) {
+//                Log.d("Error", t.getMessage());
+//            }
+//        });
+//    }
 }

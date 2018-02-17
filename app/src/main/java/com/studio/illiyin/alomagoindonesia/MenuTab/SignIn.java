@@ -2,9 +2,12 @@ package com.studio.illiyin.alomagoindonesia.MenuTab;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +18,10 @@ import android.widget.Toast;
 
 import com.studio.illiyin.alomagoindonesia.Generator.ServiceGenerator;
 import com.studio.illiyin.alomagoindonesia.R;
+import com.studio.illiyin.alomagoindonesia.fragment.Home;
 import com.studio.illiyin.alomagoindonesia.service.RrequestInterface;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,6 +37,7 @@ import retrofit2.Response;
  */
 
 public class SignIn extends Fragment {
+    public static String KEY_ID = "id";
     View myView;
     private TextView txtUsername, txtPassword;
     private Button btnLogin;
@@ -58,10 +64,10 @@ public class SignIn extends Fragment {
             public void onClick(View view) {
                 loading = ProgressDialog.show(getActivity(), null, "Please Wait", true, false);
                 requestLogin();
+
             }
         });
         return myView;
-
     }
 
     private void requestLogin() {
@@ -72,10 +78,26 @@ public class SignIn extends Fragment {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if(response.isSuccessful()){
                             loading.dismiss();
+                            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                            Fragment fragment = new Home();
+                            ft.replace(R.id.container, fragment);
+                            ft.commit();
                             try{
                                 JSONObject jsonResult = new JSONObject(response.body().string());
                                 if(jsonResult.getString("error").equals(false)){
-                                    Toast.makeText(getActivity(), "BERHASIL LOGIN", Toast.LENGTH_SHORT).show();
+//                                    JSONArray array = jsonResult.getJSONArray("data");
+//                                    if (array.length() > 0){
+//                                        for (int i=0;i<array.length();i++){
+//                                            JSONObject object = array.getJSONObject(i);
+//                                            String id = object.getString("id");
+//
+//                                            SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+//                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+//                                            editor.putString(KEY_ID,id);
+//                                            editor.commit();
+//                                        }
+//                                    }
+                                    Toast.makeText(mContext, "BERHASIL LOGIN", Toast.LENGTH_SHORT).show();
                                 }else {
                                     String error_message = jsonResult.getString("error_msg");
                                     Toast.makeText(mContext, error_message,Toast.LENGTH_SHORT).show();

@@ -1,33 +1,20 @@
 package com.studio.illiyin.alomagoindonesia.Adapter;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentContainer;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
-import com.studio.illiyin.alomagoindonesia.MenuTab.Kabar;
-import com.studio.illiyin.alomagoindonesia.Models.AppInfo;
-import com.studio.illiyin.alomagoindonesia.Models.JSONResponse2;
+import com.studio.illiyin.alomagoindonesia.DetailKabarActivity;
 import com.studio.illiyin.alomagoindonesia.Models.KabarModel;
 import com.studio.illiyin.alomagoindonesia.R;
-import com.studio.illiyin.alomagoindonesia.fragment.DetailKabar;
 
 import java.util.ArrayList;
 
@@ -84,19 +71,25 @@ public class KabarAdapter extends RecyclerView.Adapter<KabarAdapter.ViewHolder> 
 
         @Override
         public void onClick(View view) {
-            String id = data.get(getAdapterPosition()).getId();
-
-            Bundle bundle = new Bundle();
-            bundle.putString("id", id);
-
-            android.support.v4.app.Fragment fragment = new DetailKabar();
-            fragment.setArguments(bundle);
-
-            fragment.getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.containers, fragment)
-                    .commitNow();
+//            String id = data.get(getAdapterPosition()).getId();
+//
+//            Bundle bundle = new Bundle();
+//            bundle.putString("id", id);
+//
+//            android.support.v4.app.Fragment fragment = new DetailKabar();
+//            fragment.setArguments(bundle);
+//
+//            fragment.getFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.containers, fragment)
+//                    .commitNow();
             Toast.makeText(mContext, "Test"+data.get(getAdapterPosition()).getId(),Toast.LENGTH_SHORT).show();
+            String id=data.get(getAdapterPosition()).getId();
+            Intent intent = new Intent(mContext, DetailKabarActivity.class);
+            intent.putExtra("id", id);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent);
+
         }
     }
 }

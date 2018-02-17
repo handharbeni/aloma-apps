@@ -1,11 +1,13 @@
 package com.studio.illiyin.alomagoindonesia.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +16,27 @@ import com.studio.illiyin.alomagoindonesia.MenuTab.SignIn;
 import com.studio.illiyin.alomagoindonesia.MenuTab.SignUp;
 import com.studio.illiyin.alomagoindonesia.R;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by Mindha on 19/06/2017.
  */
 
+@SuppressLint("ValidFragment")
 public class Registration extends Fragment{
     View v;
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+
+    private String test;
+
+    @SuppressLint("ValidFragment")
+    public Registration(String test) {
+        this.test = test;
+        Log.d(TAG, "Registration: "+this.test);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_dua, container, false);
