@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,14 +33,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by Mindha on 21/06/2017.
  */
 
 public class SignIn extends Fragment {
     public static String KEY_ID = "id";
+    public static String UNIQ_KEY ="uniq_key";
     View myView;
-    private TextView txtUsername, txtPassword;
+    private EditText txtUsername, txtPassword;
     private Button btnLogin;
     ProgressDialog loading;
 
@@ -78,35 +82,42 @@ public class SignIn extends Fragment {
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if(response.isSuccessful()){
                             loading.dismiss();
+
                             FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                             Fragment fragment = new Home();
                             ft.replace(R.id.container, fragment);
                             ft.commit();
-                            try{
-                                JSONObject jsonResult = new JSONObject(response.body().string());
-                                if(jsonResult.getString("error").equals(false)){
-//                                    JSONArray array = jsonResult.getJSONArray("data");
-//                                    if (array.length() > 0){
-//                                        for (int i=0;i<array.length();i++){
-//                                            JSONObject object = array.getJSONObject(i);
-//                                            String id = object.getString("id");
+
+                            Toast.makeText(mContext, "Berhasil Login", Toast.LENGTH_SHORT).show();
+//                            try{
+//                                JSONObject jsonResult = new JSONObject(response.body().string());
+//                                if(jsonResult.getString("error").equals(false)){
+////                                    JSONArray array = jsonResult.getJSONArray("data");
+////                                    if (array.length() > 0){
+////                                        for (int i=0;i<array.length();i++){
+////                                            JSONObject object = array.getJSONObject(i);
+////                                            String id = jsonResult.getString("id");
+////
+////                                            SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+////                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+////                                            editor.putString(UNIQ_KEY,id);
+////                                            editor.commit();
+////
 //
-//                                            SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-//                                            SharedPreferences.Editor editor = sharedPreferences.edit();
-//                                            editor.putString(KEY_ID,id);
-//                                            editor.commit();
-//                                        }
-//                                    }
-                                    Toast.makeText(mContext, "BERHASIL LOGIN", Toast.LENGTH_SHORT).show();
-                                }else {
-                                    String error_message = jsonResult.getString("error_msg");
-                                    Toast.makeText(mContext, error_message,Toast.LENGTH_SHORT).show();
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+//
+////                                            Toast.makeText(getContext(), "test"+editor.commit(), Toast.LENGTH_SHORT).show();
+////                                        }
+////                                    }
+//                                    Toast.makeText(mContext, "BERHASIL LOGIN", Toast.LENGTH_SHORT).show();
+//                                }else {
+//                                    String error_message = jsonResult.getString("error_msg");
+//                                    Toast.makeText(mContext, error_message,Toast.LENGTH_SHORT).show();
+//                                }
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
                         }else {
                             loading.dismiss();
                         }

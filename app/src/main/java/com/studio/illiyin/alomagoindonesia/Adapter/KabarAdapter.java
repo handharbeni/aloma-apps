@@ -71,19 +71,8 @@ public class KabarAdapter extends RecyclerView.Adapter<KabarAdapter.ViewHolder> 
 
         @Override
         public void onClick(View view) {
-//            String id = data.get(getAdapterPosition()).getId();
-//
-//            Bundle bundle = new Bundle();
-//            bundle.putString("id", id);
-//
-//            android.support.v4.app.Fragment fragment = new DetailKabar();
-//            fragment.setArguments(bundle);
-//
-//            fragment.getFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.containers, fragment)
-//                    .commitNow();
-            Toast.makeText(mContext, "Test"+data.get(getAdapterPosition()).getId(),Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(mContext, ""+data.get(getAdapterPosition()).getId(),Toast.LENGTH_SHORT).show();
             String id=data.get(getAdapterPosition()).getId();
             Intent intent = new Intent(mContext, DetailKabarActivity.class);
             intent.putExtra("id", id);

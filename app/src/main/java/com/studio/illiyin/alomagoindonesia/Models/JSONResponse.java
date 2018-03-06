@@ -12,7 +12,6 @@ public class JSONResponse {
     private boolean isOK;
     private AppInfo data;
 
-
     public AppInfo getData(){
         return data;
     }

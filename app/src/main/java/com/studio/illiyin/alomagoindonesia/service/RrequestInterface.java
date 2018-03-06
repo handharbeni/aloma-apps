@@ -34,11 +34,15 @@ public interface RrequestInterface {
     @GET("kabarburung")
     Call<JSONResponse2<KabarModel>> getListKabarBurung();
 
-    @GET("kabarburung")
+//    @GET("kabarburung")
 //    Call<JSONResponseDetailKabar<DetailKabarModel>> getContentKabar(@Field("id") String id);
 
-
+    @GET("kabarburung/")
     Call<JSONResponseDetailKabar<DetailKabarModel>> getContentKabar();
+
+
+
+//    Call<JSONResponseDetailKabar<DetailKabarModel>> getContentKabar();
 
     @GET("transferpulsa")
     Call<JSONResponseHistory> getListDataHistory();
