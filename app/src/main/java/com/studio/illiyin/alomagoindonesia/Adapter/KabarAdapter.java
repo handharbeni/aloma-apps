@@ -79,6 +79,7 @@ public class KabarAdapter extends RecyclerView.Adapter<KabarAdapter.ViewHolder> 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(intent);
 
+
         }
     }
 }

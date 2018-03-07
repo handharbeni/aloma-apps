@@ -48,9 +48,14 @@ public class DetailKabarActivity extends AppCompatActivity {
         Intent intent = getIntent();
         intent.getStringExtra("id");
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setActionBarTitle("Kabar Burung");
+
         initViews();
     }
-
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
     private void initViews() {
         recyclerView = findViewById(R.id.rv);
         recyclerView.setHasFixedSize(true);

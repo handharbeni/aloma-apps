@@ -51,7 +51,7 @@ public class MainActivityTab extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+            super.onCreate(savedInstanceState);
         String[] permissions = new String[13];
         permissions[0] = Manifest.permission.CAMERA;
         permissions[1] = Manifest.permission.INTERNET;

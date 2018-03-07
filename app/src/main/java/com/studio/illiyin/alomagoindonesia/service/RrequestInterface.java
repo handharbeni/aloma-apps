@@ -57,4 +57,5 @@ public interface RrequestInterface {
     @POST("user/masuk")
     Call<ResponseBody> loginRequest(@Field("username") String username,
                                     @Field("password") String password);
+
 }

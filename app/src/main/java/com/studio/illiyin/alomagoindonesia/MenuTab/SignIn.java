@@ -1,6 +1,7 @@
 package com.studio.illiyin.alomagoindonesia.MenuTab;
 
 import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.studio.illiyin.alomagoindonesia.Generator.ServiceGenerator;
+import com.studio.illiyin.alomagoindonesia.Models.SignInModel;
 import com.studio.illiyin.alomagoindonesia.R;
 import com.studio.illiyin.alomagoindonesia.fragment.Home;
 import com.studio.illiyin.alomagoindonesia.service.RrequestInterface;
@@ -27,11 +29,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.content.ContentValues.TAG;
 
@@ -41,7 +46,7 @@ import static android.content.ContentValues.TAG;
 
 public class SignIn extends Fragment {
     public static String KEY_ID = "id";
-    public static String UNIQ_KEY ="uniq_key";
+    public static String UNIQ_KEY= "uniq_key";
     View myView;
     private EditText txtUsername, txtPassword;
     private Button btnLogin;
@@ -49,6 +54,7 @@ public class SignIn extends Fragment {
 
     Context mContext;
     RrequestInterface request;
+    ArrayList<SignInModel> data;
 
     @Nullable
     @Override
@@ -74,60 +80,58 @@ public class SignIn extends Fragment {
         return myView;
     }
 
+
     private void requestLogin() {
-        request.loginRequest(txtUsername.getText().toString(),
-                txtPassword.getText().toString())
-                .enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if(response.isSuccessful()){
-                            loading.dismiss();
 
-                            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                            Fragment fragment = new Home();
-                            ft.replace(R.id.container, fragment);
-                            ft.commit();
+        request = ServiceGenerator.createService(RrequestInterface.class);
+        Call<ResponseBody> call = request.loginRequest(
+                txtUsername.getText().toString(),
+                txtPassword.getText().toString());
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
-                            Toast.makeText(mContext, "Berhasil Login", Toast.LENGTH_SHORT).show();
-//                            try{
-//                                JSONObject jsonResult = new JSONObject(response.body().string());
-//                                if(jsonResult.getString("error").equals(false)){
-////                                    JSONArray array = jsonResult.getJSONArray("data");
-////                                    if (array.length() > 0){
-////                                        for (int i=0;i<array.length();i++){
-////                                            JSONObject object = array.getJSONObject(i);
-////                                            String id = jsonResult.getString("id");
-////
-////                                            SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-////                                            SharedPreferences.Editor editor = sharedPreferences.edit();
-////                                            editor.putString(UNIQ_KEY,id);
-////                                            editor.commit();
-////
-//
-//
-////                                            Toast.makeText(getContext(), "test"+editor.commit(), Toast.LENGTH_SHORT).show();
-////                                        }
-////                                    }
-//                                    Toast.makeText(mContext, "BERHASIL LOGIN", Toast.LENGTH_SHORT).show();
-//                                }else {
-//                                    String error_message = jsonResult.getString("error_msg");
-//                                    Toast.makeText(mContext, error_message,Toast.LENGTH_SHORT).show();
-//                                }
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-                        }else {
-                            loading.dismiss();
-                        }
+                if(response.isSuccessful()){
+
+                    loading.dismiss();
+                    Toast.makeText(mContext, "Login Success", Toast.LENGTH_SHORT).show();
+
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        String key = jsonObject.getString("uniq_key");
+                        String uniq_key = String.valueOf(key.hashCode());
+
+                        Log.d(TAG, "UNIQ_KEY =\t"+uniq_key);
+
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        Fragment fragment = new Home();
+                        ft.replace(R.id.container, fragment);
+                        ft.commit();
+
+                        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("KEY",uniq_key);
+                        editor.commit();
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
 
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Log.e("debug", "Error"+t.toString());
-                        loading.dismiss();
-                    }
-                });
+                }else {
+                    loading.dismiss();
+                    Toast.makeText(mContext, "Koneksi Bermasalah", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("debug", "Error"+t.toString());
+                loading.dismiss();
+            }
+        });
+
     }
 }
