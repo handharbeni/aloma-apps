@@ -10,26 +10,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de3b8c71-b02e-4d78-af7f-f7a62199cb9f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/Models/HistoriesModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/Models/JSONResponseHistories.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/Models/HistoryModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/Models/JSONResponseHistory.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/Adapter/HistoryAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/Adapter/HistoryAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/MenuTab/Kabar.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/MenuTab/Kabar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/MenuTab/SignIn.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/MenuTab/SignIn.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/fragment/History.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/fragment/History.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/service/RrequestInterface.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/service/RrequestInterface.java" />
-    </list>
+    <list default="true" id="de3b8c71-b02e-4d78-af7f-f7a62199cb9f" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <ignored path="$PROJECT_DIR$/app/build/intermediates/assets/" />
@@ -172,13 +153,12 @@
       <file leaf-file-name="HistoriesModel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/Models/HistoriesModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="300" column="5" lean-forward="true" selection-start-line="300" selection-start-column="5" selection-end-line="300" selection-end-column="5" />
+            <state relative-caret-position="204">
+              <caret line="298" column="29" lean-forward="true" selection-start-line="298" selection-start-column="29" selection-end-line="298" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5519#5520#0" expanded="true" />
                 <element signature="e#5563#5564#0" expanded="true" />
-                <element signature="e#5594#5595#0" expanded="true" />
                 <element signature="e#5621#5622#0" expanded="true" />
               </folding>
             </state>
@@ -2349,7 +2329,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520499175514" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520499590773" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2396,7 +2376,7 @@
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
       </Profilers>
       <method>
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520499175514" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1520499590774" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3282,13 +3262,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/studio/illiyin/alomagoindonesia/Models/HistoriesModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="300" column="5" lean-forward="true" selection-start-line="300" selection-start-column="5" selection-end-line="300" selection-end-column="5" />
+        <state relative-caret-position="204">
+          <caret line="298" column="29" lean-forward="true" selection-start-line="298" selection-start-column="29" selection-end-line="298" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5519#5520#0" expanded="true" />
             <element signature="e#5563#5564#0" expanded="true" />
-            <element signature="e#5594#5595#0" expanded="true" />
             <element signature="e#5621#5622#0" expanded="true" />
           </folding>
         </state>
