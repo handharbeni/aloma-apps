@@ -4,7 +4,7 @@ import com.studio.illiyin.alomagoindonesia.Models.DetailKabarModel;
 import com.studio.illiyin.alomagoindonesia.Models.JSONResponse;
 import com.studio.illiyin.alomagoindonesia.Models.JSONResponse2;
 import com.studio.illiyin.alomagoindonesia.Models.JSONResponseDetailKabar;
-import com.studio.illiyin.alomagoindonesia.Models.JSONResponseHistory;
+import com.studio.illiyin.alomagoindonesia.Models.JSONResponseHistories;
 import com.studio.illiyin.alomagoindonesia.Models.KabarModel;
 
 import okhttp3.ResponseBody;
@@ -34,18 +34,8 @@ public interface RrequestInterface {
     @GET("kabarburung")
     Call<JSONResponse2<KabarModel>> getListKabarBurung();
 
-//    @GET("kabarburung")
-//    Call<JSONResponseDetailKabar<DetailKabarModel>> getContentKabar(@Field("id") String id);
-
     @GET("kabarburung/")
     Call<JSONResponseDetailKabar<DetailKabarModel>> getContentKabar();
-
-
-
-//    Call<JSONResponseDetailKabar<DetailKabarModel>> getContentKabar();
-
-    @GET("transferpulsa")
-    Call<JSONResponseHistory> getListDataHistory();
 
     @FormUrlEncoded
     @POST("user/daftar")
@@ -58,4 +48,7 @@ public interface RrequestInterface {
     Call<ResponseBody> loginRequest(@Field("username") String username,
                                     @Field("password") String password);
 
+    @FormUrlEncoded
+    @POST("transferpulsa/url")
+    Call<JSONResponseHistories> ListHistories(@Field("key") String uniq_key);
 }

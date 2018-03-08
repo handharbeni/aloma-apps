@@ -46,7 +46,7 @@ import static android.content.ContentValues.TAG;
 
 public class SignIn extends Fragment {
     public static String KEY_ID = "id";
-    public static String UNIQ_KEY= "uniq_key";
+    public static String UNIQ_KEY;
     View myView;
     private EditText txtUsername, txtPassword;
     private Button btnLogin;
@@ -99,9 +99,10 @@ public class SignIn extends Fragment {
                     try {
                         JSONObject jsonObject = new JSONObject(response.body().string());
                         String key = jsonObject.getString("uniq_key");
-                        String uniq_key = String.valueOf(key.hashCode());
-
-                        Log.d(TAG, "UNIQ_KEY =\t"+uniq_key);
+//                        String uniq_key = String.valueOf(key.hashCode());
+                        UNIQ_KEY = key;
+                        Log.d(TAG, "UNIQ_KEY =\t"+key);
+//                        Log.d(TAG, "UNIQ_KEY =\t"+uniq_key);
 
                         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                         Fragment fragment = new Home();
@@ -110,7 +111,7 @@ public class SignIn extends Fragment {
 
                         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("KEY",uniq_key);
+                        editor.putString("KEY",key);
                         editor.commit();
 
                     } catch (JSONException e) {
