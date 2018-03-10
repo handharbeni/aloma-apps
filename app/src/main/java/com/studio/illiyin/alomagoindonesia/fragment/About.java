@@ -40,10 +40,9 @@ public class About extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_about,container,false);
-        getActivity().setTitle("About");
+        getActivity().setTitle("About this APP");
         initViews();
         return view;
-
     }
 
     private void initViews() {

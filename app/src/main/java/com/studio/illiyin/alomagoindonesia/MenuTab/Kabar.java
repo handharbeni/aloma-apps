@@ -47,10 +47,6 @@ public class Kabar extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_berita_burung, container, false);
         initViews();
-
-//        SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-//        String idShared = sharedPreferences.getString(SignIn.KEY_ID, "");
-
         return  view;
     }
 

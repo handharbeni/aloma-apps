@@ -22,12 +22,18 @@ import com.studio.illiyin.alomagoindonesia.Models.JSONResponseHistories;
 import com.studio.illiyin.alomagoindonesia.R;
 import com.studio.illiyin.alomagoindonesia.service.RrequestInterface;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.content.ContentValues.TAG;
 
@@ -41,8 +47,6 @@ public class History extends Fragment{
     private ArrayList<HistoriesModel> message;
     private HistoryAdapter adapter;
     RrequestInterface request;
-
-    String UNIQ_KEY;
 
     @Nullable
     @Override
@@ -64,16 +68,15 @@ public class History extends Fragment{
 
     private void loadData() {
 
-        String uniq_key = SignIn.UNIQ_KEY;
+        String uniq_key ="uniq_key";
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-        String key = preferences.getString("key", uniq_key);
+        String key = preferences.getString(SignIn.UNIQ_KEY, uniq_key);
         Log.d(TAG, "UNIQ_KEY_SHARED=\t"+key);
 
         if(key!=null){
             request = ServiceGenerator.createService(RrequestInterface.class);
             Call<JSONResponseHistories> call = request.ListHistories(key);
             call.enqueue(new Callback<JSONResponseHistories>() {
-
                 @Override
                 public void onResponse(Call<JSONResponseHistories> call, Response<JSONResponseHistories> response) {
                     JSONResponseHistories jsonResponse = response.body();
@@ -81,14 +84,15 @@ public class History extends Fragment{
                     adapter = new HistoryAdapter(message, getActivity().getApplicationContext());
                     recyclerView.setAdapter(adapter);
                 }
-
+//
                 @Override
                 public void onFailure(Call<JSONResponseHistories> call, Throwable t) {
                     Log.d("error", t.getMessage());
                 }
             });
-        }else{
-            Toast.makeText(getContext(), "Silahkan Login Untuk Melihat History Transaksi Anda !",Toast.LENGTH_SHORT ).show();
         }
+//        else{
+//            Toast.makeText(getContext(), "Silahkan Login Untuk Melihat History Transaksi Anda !",Toast.LENGTH_SHORT ).show();
+//        }
     }
 }

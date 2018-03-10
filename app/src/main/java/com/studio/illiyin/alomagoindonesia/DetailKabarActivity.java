@@ -48,7 +48,7 @@ public class DetailKabarActivity extends AppCompatActivity {
         Intent intent = getIntent();
         intent.getStringExtra("id");
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setActionBarTitle("Kabar Burung");
 
         initViews();
