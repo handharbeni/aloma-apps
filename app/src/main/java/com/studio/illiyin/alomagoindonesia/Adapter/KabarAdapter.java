@@ -72,7 +72,7 @@ public class KabarAdapter extends RecyclerView.Adapter<KabarAdapter.ViewHolder> 
         @Override
         public void onClick(View view) {
 
-            Toast.makeText(mContext, ""+data.get(getAdapterPosition()).getId(),Toast.LENGTH_SHORT).show();
+//            Toast.makeText(mContext, ""+data.get(getAdapterPosition()).getId(),Toast.LENGTH_SHORT).show();
             String id=data.get(getAdapterPosition()).getId();
             Intent intent = new Intent(mContext, DetailKabarActivity.class);
             intent.putExtra("id", id);

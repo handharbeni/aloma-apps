@@ -92,10 +92,7 @@ public class SignIn extends Fragment {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 if(response.isSuccessful()){
-
                     loading.dismiss();
-                    Toast.makeText(mContext, "Login Success", Toast.LENGTH_SHORT).show();
-
                     try {
                         JSONObject jsonObject = new JSONObject(response.body().string());
                         String key = jsonObject.getString("uniq_key");
@@ -111,15 +108,15 @@ public class SignIn extends Fragment {
                         editor.putString(UNIQ_KEY,key);
                         editor.commit();
 
+                        Toast.makeText(mContext, "Login Success", Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
+                        Toast.makeText(mContext, "Username atau Password anda salah !", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
-                }else {
+                }else if(!response.isSuccessful()) {
                     loading.dismiss();
-                    Toast.makeText(mContext, "Koneksi Bermasalah", Toast.LENGTH_SHORT).show();
                 }
 
             }

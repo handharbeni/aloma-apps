@@ -4,7 +4,7 @@ package com.studio.illiyin.alomagoindonesia.Models;
  * Created by fairuz on 3/8/2018.
  */
 
-public class JSONResponseHistories<K> {
+public class JSONResponseHistories {
     private boolean isOK;
     private HistoriesModel[] message;
     public HistoriesModel[] getListHistory(){

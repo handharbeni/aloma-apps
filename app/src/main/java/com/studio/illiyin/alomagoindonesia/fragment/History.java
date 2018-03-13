@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.studio.illiyin.alomagoindonesia.Adapter.HistoryAdapter;
@@ -47,13 +48,13 @@ public class History extends Fragment{
     private ArrayList<HistoriesModel> message;
     private HistoryAdapter adapter;
     RrequestInterface request;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         view = inflater.inflate(R.layout.fragment_history, container, false);
         getActivity().setTitle("History");
         initViews();
+
         return view;
     }
 
@@ -71,9 +72,11 @@ public class History extends Fragment{
         String uniq_key ="uniq_key";
         SharedPreferences preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
         String key = preferences.getString(SignIn.UNIQ_KEY, uniq_key);
-        Log.d(TAG, "UNIQ_KEY_SHARED=\t"+key);
 
-        if(key!=null){
+        if(key.equals(uniq_key)){
+//            Toast.makeText(getContext(), "Silahkan Login Untuk Melihat History Transaksi Anda !",Toast.LENGTH_SHORT ).show();
+        }
+        else{
             request = ServiceGenerator.createService(RrequestInterface.class);
             Call<JSONResponseHistories> call = request.ListHistories(key);
             call.enqueue(new Callback<JSONResponseHistories>() {
@@ -84,15 +87,12 @@ public class History extends Fragment{
                     adapter = new HistoryAdapter(message, getActivity().getApplicationContext());
                     recyclerView.setAdapter(adapter);
                 }
-//
+                //
                 @Override
                 public void onFailure(Call<JSONResponseHistories> call, Throwable t) {
                     Log.d("error", t.getMessage());
                 }
             });
         }
-//        else{
-//            Toast.makeText(getContext(), "Silahkan Login Untuk Melihat History Transaksi Anda !",Toast.LENGTH_SHORT ).show();
-//        }
     }
 }

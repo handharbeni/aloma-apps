@@ -31,11 +31,6 @@ import java.util.ArrayList;
 public class DetailKabarAdapter extends RecyclerView.Adapter<DetailKabarAdapter.ViewHolder> {
     private ArrayList<DetailKabarModel> data;
     Context mContext;
-//
-//    public DetailKabarAdapter (ArrayList<DetailKabarModel> data, Context getapplicationcontext){
-//        this.data = data;
-//        this.mContext = getapplicationcontext;
-//    }
 
     public DetailKabarAdapter(ArrayList<DetailKabarModel> dataModels, Context applicationContext) {
         this.data = dataModels;
@@ -69,53 +64,5 @@ public class DetailKabarAdapter extends RecyclerView.Adapter<DetailKabarAdapter.
             img = itemView.findViewById(R.id.imageKabarBurung);
         }
     }
-//    private ArrayList<KabarModel> data;
-//    private ArrayList<KabarModel> gambar;
-//    Context mContext;
-//    DetailKabar fragment = new DetailKabar();
-//
-//    public DetailKabarAdapter(ArrayList<KabarModel> data, Context getApplicationContent){
-//        this.data = data;
-//        this.mContext = getApplicationContent;
-//    }
-//
-//    @Override
-//    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        View view  = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_detail_berita, parent, false);
-//        return new ViewHolder(view);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(ViewHolder holder, int position) {
-//        Bundle bundle = fragment.getArguments();
-//        if(bundle != null){
-//            String i = bundle.getString("id", "");
-//
-//            holder.txtJudul.setText(i);
-//            gambar = (ArrayList<KabarModel>) data.get(position).getImages();
-//            if(gambar!=null){
-//                Picasso.with(mContext.getApplicationContext()).load((Uri) data.get(position).getImages()).into(holder.imgIconContent);
-//            }else{
-//                Picasso.with(mContext.getApplicationContext()).load(R.drawable.img_one_cak).into(holder.imgIconContent);
-//            }
-//
-//        }
-//
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return data.size();
-//    }
-//
-//    public class ViewHolder extends RecyclerView.ViewHolder {
-//        private ImageView imgIconContent;
-//        private TextView txtJudul;
-//        public ViewHolder(View itemView) {
-//            super(itemView);
-//
-//            txtJudul=itemView.findViewById(R.id.judul_berita);
-//            imgIconContent = itemView.findViewById(R.id.img_contentNews);
-//        }
-//    }
+
 }
