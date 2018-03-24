@@ -87,7 +87,6 @@ public class History extends Fragment{
                     adapter = new HistoryAdapter(message, getActivity().getApplicationContext());
                     recyclerView.setAdapter(adapter);
                 }
-                //
                 @Override
                 public void onFailure(Call<JSONResponseHistories> call, Throwable t) {
                     Log.d("error", t.getMessage());

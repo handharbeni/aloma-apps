@@ -1,7 +1,6 @@
 package com.studio.illiyin.alomagoindonesia.MenuTab;
 
 import android.app.ProgressDialog;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,16 +14,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.studio.illiyin.alomagoindonesia.Generator.ServiceGenerator;
+import com.studio.illiyin.alomagoindonesia.MainActivityTab;
 import com.studio.illiyin.alomagoindonesia.Models.SignInModel;
 import com.studio.illiyin.alomagoindonesia.R;
 import com.studio.illiyin.alomagoindonesia.fragment.Home;
 import com.studio.illiyin.alomagoindonesia.service.RrequestInterface;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,8 +33,6 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.content.ContentValues.TAG;
 
@@ -82,7 +78,6 @@ public class SignIn extends Fragment {
 
 
     private void requestLogin() {
-
         request = ServiceGenerator.createService(RrequestInterface.class);
         Call<ResponseBody> call = request.loginRequest(
                 txtUsername.getText().toString(),
@@ -90,18 +85,17 @@ public class SignIn extends Fragment {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
+//                Toast.makeText(mContext, response.message().toString(), Toast.LENGTH_SHORT).show();
+                loading.dismiss();
                 if(response.isSuccessful()){
                     loading.dismiss();
                     try {
                         JSONObject jsonObject = new JSONObject(response.body().string());
                         String key = jsonObject.getString("uniq_key");
-                        Log.d(TAG, "UNIQ_KEY =\t"+key);
 
-                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                        Fragment fragment = new Home();
-                        ft.replace(R.id.container, fragment);
-                        ft.commit();
+                        Intent intent = new Intent(getActivity(), MainActivityTab.class);
+                        startActivity(intent);
+                        getActivity().finish();
 
                         SharedPreferences sharedPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -118,7 +112,6 @@ public class SignIn extends Fragment {
                 }else if(!response.isSuccessful()) {
                     loading.dismiss();
                 }
-
             }
 
             @Override
@@ -127,6 +120,5 @@ public class SignIn extends Fragment {
                 loading.dismiss();
             }
         });
-
     }
 }

@@ -2,8 +2,10 @@ package com.studio.illiyin.alomagoindonesia;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
@@ -21,8 +23,8 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.pddstudio.preferences.encrypted.EncryptedPreferences;
+import com.studio.illiyin.alomagoindonesia.MenuTab.SignIn;
 import com.studio.illiyin.alomagoindonesia.fragment.About;
-import com.studio.illiyin.alomagoindonesia.fragment.DetailKabar;
 import com.studio.illiyin.alomagoindonesia.fragment.Disclaimer;
 import com.studio.illiyin.alomagoindonesia.fragment.Feedback;
 import com.studio.illiyin.alomagoindonesia.fragment.Registration;
@@ -47,8 +49,6 @@ public class MainActivityTab extends AppCompatActivity{
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -79,6 +79,7 @@ public class MainActivityTab extends AppCompatActivity{
         EncryptedPreferences encryptedPreferences = new EncryptedPreferences.Builder(this).withEncryptionPassword("password").build();
 
         if (!checkIsRunning(MainServices.class)){
+
             Intent i = new Intent(MainActivityTab.this, MainServices.class);
             startService(i);
         }
@@ -96,11 +97,19 @@ public class MainActivityTab extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_activity_tab, menu);
-        return true;
-    }
+        String uniq_key = "";
+        SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
+        String key = preferences.getString(SignIn.UNIQ_KEY, uniq_key);
 
+        if (key.equals(uniq_key)){
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.menu_main_activity_tab, menu);
+        }else {
+            getMenuInflater().inflate(R.menu.menu_main_activity_tab2, menu);
+        }
+            return true;
+
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -111,7 +120,6 @@ public class MainActivityTab extends AppCompatActivity{
             changeFragment(tab1);
             return true;
         }
-
         if (id == R.id.sign_in){
             Fragment tab1 = new Registration("Test");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -161,7 +169,20 @@ public class MainActivityTab extends AppCompatActivity{
             changeFragment(tab1);
             return true;
         }
+        else if(id == R.id.logout){
+            SharedPreferences pref = getPreferences(Context.MODE_PRIVATE);
+            pref.edit().clear().commit();
+            Toast.makeText(getBaseContext(), "LOGOUT", Toast.LENGTH_SHORT).show();
 
+//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//            Fragment fragment = new Home();
+//            ft.replace(R.id.container, fragment);
+//            ft.commit();
+            Intent intent = new Intent(this, MainActivityTab.class);
+            startActivity(intent);
+            this.finish();
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 

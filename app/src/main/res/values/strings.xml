@@ -29,6 +29,7 @@
     <string name="disclaimer">Disclaimer</string>
     <string name="privacy">Privacy Policy</string>
     <string name="about">About</string>
+    <string name="logout">Logout</string>
 
     <!-- About this APP -->
     <string name="title_about">About this APP</string>

@@ -70,7 +70,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".DetailKabarActivity"></activity>
+        <activity android:name=".DetailKabarActivity" />
+
     </application>
 
 </manifest>
